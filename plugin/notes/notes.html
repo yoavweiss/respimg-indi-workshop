@@ -164,6 +164,7 @@
 				<h2>Elapsed</h2>
 				<span id="hours">00</span><span id="minutes">:00</span><span id="seconds">:00</span>
 			</div>
+            <button id="reset">Reset</button>
 		</div>
 
 		<div id="notes"></div>
@@ -202,13 +203,18 @@
 						silenced = false;
 
 					}, false );
-
 					var start = new Date(),
 						timeEl = document.querySelector( '.time' ),
 						clockEl = document.getElementById( 'clock' ),
 						hoursEl = document.getElementById( 'hours' ),
 						minutesEl = document.getElementById( 'minutes' ),
 						secondsEl = document.getElementById( 'seconds' );
+
+                    var resetButton = document.getElementById('reset');
+                    resetButton.addEventListener('click', function(){
+                        start = new Date();
+                    });
+
 
 					setInterval( function() {
 
