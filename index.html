@@ -340,6 +340,9 @@
                     <h2>&lt;/history&gt;</h2>
                 </section>
                 <section>
+                    <h2>&lt;syntax&gt;</h2>
+                </section>
+                <section>
                     <h2>Picture 2.0&trade;</h2>
                     <!-- frankenstein things -->
                     <aside class="notes">
@@ -438,7 +441,10 @@
                     </code></pre>
                 </section>
                 <section>
-                    <h2>Browser support</h2>
+                    <h2>&lt;/syntax&gt;</h2>
+                </section>
+                <section>
+                    <h2>&lt;support&gt;</h2>
                     <img width=400px src="resources/browser_logos1.png">
                     <p class=credits><a
                         href="http://blog.thestudio4.co.uk/wp-content/uploads/2011/12/browser_logos1.png">blog.thestudio4.co.uk</a></p>
@@ -452,7 +458,7 @@
                     <li class=fragment>Hopefully shipping soon!</li>
                     <aside class="notes">
                         (fragments)
-                        <p>I started out by implementing srcset's x descriptor. It shipped in Chrome/Opera stable a few weeks back.</p>
+                        <p>I started out by implementing srcset's x descriptor. It shipped in Chrome/Opera stable a few months back.</p>
                         <p>sizes and the 'w' descriptor in srcset are done. I'll probably aim to ship it in M37</p>
                         <p>picture work has started and is moving along nicely - Christian is helping with stable state</p>
                         xxxx Indiegogo campaign
@@ -482,25 +488,93 @@
                     </aside>
                 </section>
                 <section>
-                    <h2>A look under the hood</h2>
-                    <p class=fragment><img src="resources/under-the-hood.jpg"></p>
-                    <p class="credits fragment"><a href="http://www.newyorkshitty.com/williamsburg/3196">http://www.newyorkshitty.com/williamsburg/3196</a></p>
+                    <h2>&lt;/support&gt;</h2>
                 </section>
                 <section>
-                    <h2>Media Queries evaluation</h2>
+                    <h2>&lt;internals&gt;</h2>
+                </section>
+                <section>
+                    <h2>Media Queries evaluation in the preloader</h2>
                     <p class=fragment>PreloadScanner requires off-main-thread MQ eval</p>
                     <aside class="notes">
                         <p>Getting picture and sizes to wrok requires MQ eval in the preloadScanner</p>
                         <p>Since the Bison parser and related classes are not thread safe, I had to create an alternative mechanism</p>
                     </aside>
+                    <section>
+                        <h2>Who's afraid of the big, bad preloader</h2>
+                        <aside class="notes">
+                            [Raise your hand if you know what the preloader is]
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>AKA</h2>
+                        <ul>
+                            <li class="fragment">PreloadScanner</li>
+                            <li class="fragment">Speculative parser</li>
+                            <li class="fragment">Look-ahead scanner</li>
+                        </ul>
+                        <aside class="notes">
+                            It goes by many names, but has been the BoogeyMan for Web devs during the respimg hack period
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>"The greatest browser optimization of all times"</h2>
+                        <p style="text-align: right">- Steve Souders</p>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>What does it do?</h2>
+                        <ul>
+                            <li class="fragment">Scans the document when the parser is blocked </li>
+                            <li class="fragment">Figures out resources that need to be downloaded</li>
+                            <li class="fragment">Adds them to the download queue</li>
+                        </ul>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>How important is that???</h2>
+                        <img src="resources/troll_tiny.png">
+                        <aside class="notes">
+
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>SmashingMag - With preloader</h2>
+                        <img src="resources/preloader.png">
+                        DCL - 2390; PLT - 3585
+                        <br><br>
+                        <small>Using <a href="http://ericduran.github.io/chromeHAR/">chromeHAR</a></small>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>SmashingMag - No preloader</h2>
+                        <img src="resources/nopreloader.png">
+                        DCL - 5395; PLT - 7193
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>BBC - With preloader</h2>
+                        <img src="resources/bbc_preloader.png">
+                        DCL - 5022; PLT - 5980
+                        <br><br>
+                        <small>Using <a href="http://ericduran.github.io/chromeHAR/">chromeHAR</a></small>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>BBC - Without preloader</h2>
+                        <img src="resources/bbc_nopreloader.png">
+                        DCL - 7660; PLT - 7957
+                        <aside class="notes">
+                        </aside>
+                    </section>
                 </section>
                 <section>
                     <h2>MediaQueryTokenizer</h2>
-                    <p class=fragment>Based on eseidel's CSS syntax tokenizer</p>
-                    <p class=fragment>Implemented the parts needed for MQs and sizes</p>
-                    <img src="resources/token.jpg">
-                    <p class=credits><a
-                        href="http://en.numista.com/catalogue/pieces23200.html">http://en.numista.com/catalogue/pieces23200.html</a></p>
                     <aside class="notes">
                         <p>I started by taking Eric's tokenizer and adapting it to my needs.</p>
                         <p>I've deleted the parts that I didn't need and implemented the missing parts that I did</p>
@@ -508,7 +582,6 @@
                 </section>
                 <section>
                     <h2>MediaQueryParser</h2>
-                    <p class=fragment>Currently turned on only off-main-thread</p>
                     <aside class="notes">
                         <p>Then I've build a parser for MediaQuery syntax that is based on the tokenizer's output</p>
                         <p>It's currently turned on only off-main-thread (so in the preloader, for 'media' attributes as well as the sizes
@@ -520,35 +593,12 @@
                 </section>
                 <section>
                     <h2>MediaValues</h2>
-                    <p class=fragment>Used by MediaQueryEvaluator</p>
-                    <p class=fragment>Cached variant - contains static values</p>
-                    <p class=fragment>Dynamic variants - refs a LocalFrame</p>
-                    <p class=fragment>MQ eval no longer depends on RenderStyle</p>
-                    <p class=fragment>Implements thread safe CSS length computation</p>
-                </section>
-                <section>
-                    <h2>SizesAttributeParser</h2>
-                    <p class=fragment>Uses MediaQueryParser as a component</p>
                     <aside class="notes">
-                        <p>Since 'sizes' syntax is based on CSS, I've used the Tokenizer also for the sizes attribute parser.</p>
-                    </aside>
-                </section>
-                <section>
-                    <h2>SizesCalcParser</h2>
-                    <p class=fragment>Calc syntax => tokens => reverse polish notation => length</p>
-                    <aside class="notes">
-                        <p>Here again, I've used the Tokenizer to get the calc tokens.</p>
-                        <p>Then I got rid of the parens by turning them into reverse Polish notation (Dijkstra's shunting yard algo)</p>
-                        <p>And finally, calculate the output length</p>
-                    </aside>
-                </section>
-                <section>
-                    <h2>HTMLSrcsetParser</h2>
-                    <p class=fragment>Parses the srcset attribute </p>
-                    <p class=fragment>'w' descriptors converted to DPR (using 'sizes')</p>
-                    <p class=fragment>Picks the best candidate to load</p>
-                    <aside class="notes">
-                        <p>A stand alone parser for the srcset syntax. Used from both HTMLImageElement and HTMLPreloadScanner</p>
+                        <p>Used by MediaQueryEvaluator</p>
+                        <p>Cached variant - contains static values</p>
+                        <p>Dynamic variants - refs a LocalFrame</p>
+                        <p>MQ eval no longer depends on RenderStyle</p>
+                        <p>Implements thread safe CSS length computation</p>
                     </aside>
                 </section>
                 <section>
@@ -568,7 +618,7 @@
                     </aside>
                 </section>
                 <section>
-                    <h2>Stable state image loading</h2>
+                    <h2>Async image loading</h2>
                     <p class=fragment>Required to avoid double download</p>
                     <p class=fragment>Also required for img attribute setting</p>
                     <p class=fragment>Worked on by Christian Biesinger (Thanks, Christian! :))</p>
@@ -584,88 +634,37 @@
                     </aside>
                 </section>
                 <section>
+                    <h2>Future improvements?</h2>
+                </section>
+                <section>
                     <h2>UA specific resource selection policy</h2>
+                    <aside class="notes">
+                        <p>The resource selection policy in the spec is described as UA specific</p>
+                        <p>One could argue that the control of that should be given to the embedding layer</p>
+                    </aside>
+                </section>
+                <section>
+                    <h2>Smarter resource selection</h2>
+                    <aside class="notes">
+                        <p>Avoid loading lower quality when high quality is available</p>
+                        <p>Display cached/dataURI images while waiting for the real one</p>
+                    </aside>
+                </section>
+                <section>
+                    <h2>User preference, bandwidth considerations, etc</h2>
+                </section>
+                <section>
+                    <h2>&lt;/internals&gt;</h2>
+                </section>
+                <section>
+                    <h2>&lt;advice&gt;</h2>
+                    <aside class="notes">
+                        So, what do we tell our users?
+                    </aside>
                 </section>
                 <section>
                     <h2>To polyfill or not to polyfill? That is the question</h2>
                 </section>
-                <section>
-                    <h2>Preloader internals</h2>
-                </section>
-                <section>
-                    <h2>Source order matters!</h2>
-                </section>
-                <section>
-                    <h2>Who's afraid of the big, bad preloader</h2>
-                    <aside class="notes">
-                        [Raise your hand if you know what the preloader is]
-                    </aside>
-				</section>
-                <section>
-                    <h2>AKA</h2>
-                    <ul>
-                        <li class="fragment">PreloadScanner</li>
-                        <li class="fragment">Speculative parser</li>
-                        <li class="fragment">Look-ahead scanner</li>
-                    </ul>
-                    <aside class="notes">
-                    </aside>
-				</section>
-                <section>
-                    <h2>"The greatest browser optimization of all times"</h2>
-                    <p style="text-align: right">- Steve Souders</p>
-                    <aside class="notes">
-                    </aside>
-				</section>
-                <section>
-                    <h2>What does it do?</h2>
-                    <ul>
-                        <li class="fragment">Scans the document when the parser is blocked </li>
-                        <li class="fragment">Figures out resources that need to be downloaded</li>
-                        <li class="fragment">Adds them to the download queue</li>
-                    </ul>
-                    <aside class="notes">
-                    </aside>
-				</section>
-                <section>
-                    <h2>How important is that???</h2>
-                    <img src="resources/troll_tiny.png">
-                    <aside class="notes">
-
-                    </aside>
-				</section>
-                <section>
-                    <h2>SmashingMag - With preloader</h2>
-                    <img src="resources/preloader.png">
-                    DCL - 2390; PLT - 3585
-                    <br><br>
-                    <small>Using <a href="http://ericduran.github.io/chromeHAR/">chromeHAR</a></small>
-                    <aside class="notes">
-                    </aside>
-				</section>
-                <section>
-                    <h2>SmashingMag - No preloader</h2>
-                    <img src="resources/nopreloader.png">
-                    DCL - 5395; PLT - 7193
-                    <aside class="notes">
-                    </aside>
-				</section>
-                <section>
-                    <h2>BBC - With preloader</h2>
-                    <img src="resources/bbc_preloader.png">
-                    DCL - 5022; PLT - 5980
-                    <br><br>
-                    <small>Using <a href="http://ericduran.github.io/chromeHAR/">chromeHAR</a></small>
-                    <aside class="notes">
-                    </aside>
-				</section>
-                <section>
-                    <h2>BBC - Without preloader</h2>
-                    <img src="resources/bbc_nopreloader.png">
-                    DCL - 7660; PLT - 7957
-                    <aside class="notes">
-                    </aside>
-				</section>
                 <section>
                     <h2>Real life user workflow</h2>
                 </section>
@@ -691,6 +690,9 @@
                     <h2>Gotchas</h2>
                     <img src="resources/bear-trap.jpg">
                     <p class=credits>http://jaddid.com/bear-trap/attachment/4650/</p>
+                </section>
+                <section>
+                    <h2>Source order matters!</h2>
                 </section>
                 <section>
                     <h2>'w' descriptror without 'sizes'</h2>
