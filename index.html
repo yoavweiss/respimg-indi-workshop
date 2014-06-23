@@ -137,8 +137,8 @@
                 </section>
                 <section>
                     <h2>Which resources?</h2>
-                    <p>Images - over 61%</p>
-                    <p><img src="resources/httparchive_images.png"></p>
+                    <p>Images - over 63%</p>
+                    <p><img src="resources/image_chart.png"></p>
                     <p><small><a href="http://httparchive.org">httparchive.org</a></small></p>
                 </section>
                 <section>
@@ -149,6 +149,64 @@
                     <aside class="notes">
                         A small utility I cooked up and Tim Kadlec wrote about showed 72% data savings
                     </aside>
+                    <section>
+                        <h2>How can we measure?</h2>
+                        <aside class="notes">
+                            We need to run a perf budget, with no way to measure waste
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Sizer Soze</h2>
+                        <img src="resources/keizer.jpg">
+                        <aside class="notes">
+                            Following a post by grigs, hacked together on a saturday morning
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>What??</h2>
+                        <p>Measures the difference between current images &amp; perfectly sized images</p>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>How does it work?</h2>
+                        <ul>
+                            <li class="fragment">Download a page using phantomJS</li>
+                            <li class="fragment">Look at image dimensions</li>
+                            <li class="fragment">Download the images</li>
+                            <li class="fragment">Resize to displayed dimensions</li>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>SSAAS</h2>
+                        <a href="http://sizersoze.org">sizersoze.org</a>
+                        <aside class="notes">
+                            Built with help of awesome people from the RICG and the Filament Group.
+                            Special thanks to Sven Read for the design and Jeff Lembeck for the frontend work.
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Demo time!</h2>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Give it a try!</h2>
+                        <p><a href="http://sizersoze.org">sizersoze.org</a></p>
+                        <p class="fragment">Later... and please be patient!</p>
+                        <aside class="notes">
+                            This is the first time this sees any kind of non-test traffic, so I expect it to choke :)
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>If you want to help out</h2>
+                        <a href="https://github.com/yoavweiss/Sizer-Soze">github.com/yoavweiss/Sizer-Soze</a>
+                        <a href=https://github.com/ResponsiveImagesCG/Sizer-Soze-frontend/">github.com/ResponsiveImagesCG/Sizer-Soze-frontend</a>
+                        <aside class="notes">
+                            Very much in the "pet project" phase, so bug reports, etc will be appreciated
+                        </aside>
+                    </section>
                 </section>
                 <section>
                     <h2>So quality issues became</h2>
@@ -494,12 +552,14 @@
                     <h2>&lt;internals&gt;</h2>
                 </section>
                 <section>
-                    <h2>Media Queries evaluation in the preloader</h2>
-                    <p class=fragment>PreloadScanner requires off-main-thread MQ eval</p>
-                    <aside class="notes">
-                        <p>Getting picture and sizes to wrok requires MQ eval in the preloadScanner</p>
-                        <p>Since the Bison parser and related classes are not thread safe, I had to create an alternative mechanism</p>
-                    </aside>
+                    <section>
+                        <h2>Media Queries evaluation in the preloader</h2>
+                        <p class=fragment>PreloadScanner requires off-main-thread MQ eval</p>
+                        <aside class="notes">
+                            <p>Getting picture and sizes to wrok requires MQ eval in the preloadScanner</p>
+                            <p>Since the Bison parser and related classes are not thread safe, I had to create an alternative mechanism</p>
+                        </aside>
+                    </section>
                     <section>
                         <h2>Who's afraid of the big, bad preloader</h2>
                         <aside class="notes">
@@ -612,12 +672,6 @@
                     </aside>
                 </section>
                 <section>
-                    <h2>Moar intrinsic sizing</h2>
-                    <p><img src="resources/intrinsic_sizing_w.png"></p>
-                    <aside class="notes">
-                    </aside>
-                </section>
-                <section>
                     <h2>Async image loading</h2>
                     <p class=fragment>Required to avoid double download</p>
                     <p class=fragment>Also required for img attribute setting</p>
@@ -635,13 +689,9 @@
                 </section>
                 <section>
                     <h2>Future improvements?</h2>
-                </section>
-                <section>
-                    <h2>UA specific resource selection policy</h2>
-                    <aside class="notes">
-                        <p>The resource selection policy in the spec is described as UA specific</p>
-                        <p>One could argue that the control of that should be given to the embedding layer</p>
-                    </aside>
+                    <img src="resources/hoverboard.jpg">
+                    <p class=credits><a
+                        href="http://earnthis.net/brian-terrills-100-film-favorites-22-back-to-the-future-part-ii/">http://earnthis.net/brian-terrills-100-film-favorites-22-back-to-the-future-part-ii/</a></p>
                 </section>
                 <section>
                     <h2>Smarter resource selection</h2>
@@ -651,7 +701,14 @@
                     </aside>
                 </section>
                 <section>
-                    <h2>User preference, bandwidth considerations, etc</h2>
+                    <h2>User preference, bandwidth considerations ...</h2>
+                </section>
+                <section>
+                    <h2>Content embedder selection policy</h2>
+                    <aside class="notes">
+                        <p>The resource selection policy in the spec is described as UA specific</p>
+                        <p>One could argue that the control of that should be given to the embedding layer</p>
+                    </aside>
                 </section>
                 <section>
                     <h2>&lt;/internals&gt;</h2>
@@ -663,39 +720,46 @@
                     </aside>
                 </section>
                 <section>
-                    <h2>To polyfill or not to polyfill? That is the question</h2>
+                    <h2>To picturefill or</h2>
+                    <img src="resources/tobeor.jpg">
+                    <aside class="notes">
+                        <p>OTOH, picture has a good fallback mechanism built in. Old browsers get the 1x src image</p>
+                    </aside>
                 </section>
                 <section>
-                    <h2>Real life user workflow</h2>
+                    <h2>Source order matters #1</h2>
+                    <pre><code data-trim data-noescape>
+<span class=highlight>&lt;picture&gt;</span>
+     <span class=highlight>&lt;source media="(min-width: 45em)"</span> srcset="large.jpg"&gt;
+     <span class=highlight>&lt;source media="(min-width: 18em)"</span> srcset="medium.jpg"&gt;
+     &lt;img src="small.jpg" alt="The president."&gt;
+<span class=highlight>&lt;/picture&gt;</span>
+                    </code></pre>
+                    !=
+                    <pre><code data-trim data-noescape>
+<span class=highlight>&lt;picture&gt;</span>
+     <span class=highlight>&lt;source media="(min-width: 18em)"</span> srcset="medium.jpg"&gt;
+     <span class=highlight>&lt;source media="(min-width: 45em)"</span> srcset="large.jpg"&gt;
+     &lt;img src="small.jpg" alt="The president."&gt;
+<span class=highlight>&lt;/picture&gt;</span>
+                    </code></pre>
                 </section>
                 <section>
-                    <h2>Like to imagine a clean markup</h2>
+                    <h2>Source order matters #2</h2>
+                    <pre><code data-trim data-noescape>
+sizes=<span class=highlight>"(max-width: 30em) 100vw, 
+     (max-width: 50em) 50vw, 
+     calc(33vw - 100px)"</span>
+                    </code></pre>
+                    !=
+                    <pre><code data-trim data-noescape>
+sizes=<span class=highlight>"(max-width: 50em) 50vw,
+     (max-width: 30em) 100vw, 
+     calc(33vw - 100px)"</span>
+                    </code></pre>
                 </section>
                 <section>
-                    <h2>Real life Web devs are often dirty<h2>
-                </section>
-                <section>
-                    <h2>Example workflow</h2>
-                </section>
-                <section>
-                    <h2>Users upload stuff to a CMS</h2>
-                </section>
-                <section>
-                    <h2>CMS processes the images</h2>
-                </section>
-                <section>
-                    <h2>Markup atomagically added</h2>
-                </section>
-                <section>
-                    <h2>Gotchas</h2>
-                    <img src="resources/bear-trap.jpg">
-                    <p class=credits>http://jaddid.com/bear-trap/attachment/4650/</p>
-                </section>
-                <section>
-                    <h2>Source order matters!</h2>
-                </section>
-                <section>
-                    <h2>'w' descriptror without 'sizes'</h2>
+                    <h2>'sizes' default value</h2>
                     <pre><code data-trim data-noescape>
 &lt;img src="otherpic.jpg" alt="The president giving an award."
      srcset="pic100.jpg 100w, pic200.jpg 200w"&gt;
@@ -710,18 +774,6 @@
                         When sizes is missing, the default value the browser will use to determine which resource to download and at what
                         size to display it is '100vw'. (So the full width of the viewport)
 
-                    </aside>
-                </section>
-                <section>
-                    <h2>Sizes has no impact on 'x' descriptors</h2>
-                    <pre><code data-trim data-noescape>
-&lt;img src="pic1x.jpg" <span class=highlight style="text-decoration: line-through">sizes="1vw"</span>
-     alt="The president giving an award."
-     srcset="pic2x.jpg 2x, pic4.jpg 4x"&gt;
-                    </code></pre>
-                    <aside class="notes">
-                        <p>Sizes only influences 'w' descriptors, as it lets the browser figure out these resources' DPR.</p>
-                        <p>Other resources are not impacted</p>
                     </aside>
                 </section>
                 <section>
@@ -754,31 +806,6 @@
                     </aside>
                 </section>
                 <section>
-                    <h2>'x' and 'w' resources can be mixed</h2>
-                    <pre><code data-trim data-noescape>
-&lt;img src="otherpic.jpg" alt="The president giving an award."
-     srcset="<span class=highlight>pic-2x.jpg 2x, pic200.jpg 200w, </span>
-             pic400.jpg 400w, pic800.jpg 800w, pic1600.jpg 1600w, 
-             pic3200.jpg 3200w"&gt;
-                    </code></pre>
-                    <p class=fragment>You really shouldn't</p>
-                    <aside class="notes">
-                        (fragments)
-                    </aside>
-                </section>
-                <section>
-                    <h2>'x' and 'w' descriptors cannot</h2>
-                    <p>A big no no</p>
-                    <pre><code data-trim data-noescape>
-&lt;img srcset="<span class=highlight style="text-decoration: line-through">pic200.jpg 100w 2x</span>, pic200.jpg 200w, pic400.jpg 400w, 
-             pic800.jpg 800w, pic1600.jpg 1600w, pic3200.jpg 3200w"&gt;
-                    </code></pre>
-                    <img src="resources/no2.gif">
-                    <aside class="notes">
-                        Such resources will be dropped to the floor, where in the old srcset syntax, you could do that
-                    </aside>
-                </section>
-                <section>
                     <h2>src cannot be selected when 'w' is present</h2>
                     <pre><code data-trim data-noescape>
 &lt;img <span class=highlight>src="otherpic.jpg"</span> alt="The president giving an award."
@@ -790,25 +817,13 @@
                     </aside>
                 </section>
                 <section>
-                    <h2>src can be selected when only 'x' is present</h2>
-                    <pre><code data-trim data-noescape>
-&lt;img src="small-1x.jpg" <span class=highlight>srcset="small-2x.jpg 2x"</span> 
-     alt="The president."&gt;
-                    </code></pre>
-                    <aside class="notes">
-                        That is in order to avoid the need of repeating the 1x resource twice.
-                    </aside>
-                </section>
-                <section>
                     <h2>Old 'w' syntax</h2>
                     Very similar, but very different
                     <aside class="notes">
                         <p>If you're writing old srcset syntax, you're stating the viewport width, but it's being interpreted as the image's
-                        width</p>
-                        <p>Since you didn't add sizes, the browser will assume 100vw.</p>
+                        width</p> <p>Since you didn't add sizes, the browser will assume 100vw.</p>
                         <p>That means that the resource you think should be picked will be picked (YAY!)</p>
                         <p>But its intrinsic sizing will be WAY off.</p>
-                        <p>BTW, we're now considering changing 'w' to something else, to avoid that confusion</p>
                     </aside>
                 </section>
                 <section>
@@ -823,64 +838,236 @@
                     </aside>
                 </section>
                 <section>
-                    <h2>Polyfilling</h2>
-                </section>
-                <section>
-                    <h2>Picturefill</h2>
-                    <p>The official spec-compliant RICG polyfill</p>
-                    <p>Community effort led by the Filament Group</p>
-                    <aside class="notes">
-                        <p>Scott Jehl and Mat Marquis from the filament group have worked on the latest version to make it as spec compliant as
-                        possible.</p>
-                        <p>Shawn Jansepar from Mobify contributed the initial patch that supports the latest syntax.</p>
-                        <p>They've put in a lot of time to make it as close as possible to the final browser implementations, so you might
-                        as well use it :)</p>
-                    </aside>
-                </section>
-                <section>
-                    <h2>Polyfilling gotchas</h2>
-                </section>
-                <section>
-                    <h2>Double download</h2>
-                    <aside class="notes">
-                        <p>Most of the responsive image polyfills have a tendency to download the fallback image as well as the final image
-                        required.</p><p> So make sure the polyfill you're using doesn't do that, or embraces the double download (LQIP)</p>
-                    </aside>
-                </section>
-                <section>
-                    <h2>Old 'w' syntax polyfill</h2>
-                    <aside class="notes">
-                        <p>Older polyfills should be avoided, especially ones that implemented the old srcset algorithm.</p>
-                        <p>They would interpret the 'w' value differently than the standard implementation, meaning that users of different
-                        browsers will get different image resources.</p>
-                    </aside>
-                </section>
-                <section>
                     <h2>Future compat</h2>
                     <h3>Feature detection FTW!</h3>
-                    <pre style="display:inline"><code data-trim style="display: inline">HTMLImageElement.sizes</code></pre> &amp;
-                    <pre style="display:inline"><code data-trim style="display: inline">HTMLPictureElement</code></pre>
+                    <pre style="display:inline"><code style="display: inline; margin-left: 0">HTMLImageElement.sizes</code><span> &amp; </span><code style="display: inline; margin-left: 0">HTMLPictureElement</code></pre>
                     <aside class="notes">
                         <p>The syntax may be extended in the future (e.g. with 'h' descriptors for height-constrained images).</p>
                         <p>Make sure your polyfill uses feature detection, and backs off when native support is detected.</p>
                     </aside>
                 </section>
                 <section>
-                    <h2>Possible future improvements</h2>
-                    <img src="resources/hoverboard.jpg">
-                    <p class=credits><a
-                        href="http://earnthis.net/brian-terrills-100-film-favorites-22-back-to-the-future-part-ii/">http://earnthis.net/brian-terrills-100-film-favorites-22-back-to-the-future-part-ii/</a></p>
+                    <h2>Which resource was picked?</h2>
+                    <aside class="notes">
+                    </aside>
+                </section>
+                <section>
+                    <h2>currentSrc to the rescue</h2>
+                    <aside class="notes">
+                    </aside>
+                </section>
+                <section>
+                    <h2>&lt;/&advice&gt;</h2>
+                </section>
+                <section>
+                    <h2>&lt;wwic&gt;</h2>
+                </section>
+                <section>
+                    <img src="resources/pony.jpg">
+                    <aside class="notes">
+                        <p>You will encounter blog posts that think that this is a huge mistake and their unimplementable idea is the best
+                        way forward</p>
+                    </aside>
+                </section>
+                <section>
+                    <img src="resources/MQs_too_verbose.jpg">
+                    <aside class="notes">
+                    </aside>
+                </section>
+                <section>
+                    <h2>Custom MQs to the rescue</h2>
+                </section>
+                <section>
+                    <img src="resources/separation_concerns.jpg">
+                </section>
+                <section>
+                    <h2>Content images need to be in content</h2>
+                </section>
+                <section>
+                    <h2>CSS override is not really implementable</h2>
+                </section>
+                <section>
+                    <img src="resources/urls_too_verbose.jpg">
+                </section>
+                <section>
+                    <h2>Not a respimg specific problem</h2>
+                    <aside class="notes">
+                        <p>URLs being verbose is a platform wide issue</p>
+                        <p>Server side templates and gzip are doing a good job mitigating that</p>
+                    </aside>
+                </section>
+                <section>
+                    <h2>&lt;/wwic&gt;</h2>
+                </section>
+                <section>
+                    <section>
+                        <h2>&lt;quiz&gt;</h2>
+                        <h3>AKA: What's wrong with this &lt;picture&gt;?</h3>
+                    </section>
+                    <section>
+                        <pre><code data-trim data-noescape>
+    &lt;picture&gt;
+        &lt;source sizes="100vw"
+             srcset="pic100.jpg 100w, pic200.jpg 200w"&gt;
+        &lt;img src="otherpic.jpg" sizes="100vw"
+             alt="The president giving an award."
+             srcset="pic100.jpg 100w, pic200.jpg 200w"&gt;
+    &lt;/picture&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        <h2>Unnecessary picture</h2>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Unnecessary picture</h2>
+                        <pre><code data-trim data-noescape>
+    &lt;img src="otherpic.jpg" sizes="100vw"
+         alt="The president giving an award."
+         srcset="pic100.jpg 100w, pic200.jpg 200w"&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <pre><code data-trim data-noescape>
+    &lt;picture&gt;
+         &lt;source media="(min-width: 18em)" srcset="medium.jpg"&gt;
+         &lt;source media="(min-width: 45em)" srcset="large.jpg"&gt;
+         &lt;img src="small.jpg" alt="The president."&gt;
+    &lt;/picture&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        <h2>Messed up source order in picture</h2>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Source order</h2>
+                        <pre><code data-trim data-noescape>
+    &lt;picture&gt;
+         &lt;source media="<span class=highlight>(min-width: 45em)</span>" srcset="large.jpg"&gt;
+         &lt;source media="<span class=highlight>(min-width: 18em)</span>" srcset="medium.jpg"&gt;
+         &lt;img src="small.jpg" alt="The president."&gt;
+    &lt;/picture&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <pre><code data-trim data-noescape>
+    &lt;picture&gt;
+         &lt;source media="(min-width: 45em)" src="large.jpg"&gt;
+         &lt;source media="(min-width: 18em)" src="medium.jpg"&gt;
+         &lt;img src="small.jpg" alt="The president."&gt;
+    &lt;/picture&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        <h2>src is ignored on source</h2>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>src is ignored on source</h2>
+                        <pre><code data-trim data-noescape>
+    &lt;picture&gt;
+         &lt;source media="(min-width: 45em)" <span class=highlight>srcset</span>="large.jpg"&gt;
+         &lt;source media="(min-width: 18em)" <span class=highlight>srcset</span>="medium.jpg"&gt;
+         &lt;img src="small.jpg" alt="The president."&gt;
+    &lt;/picture&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        <h2>src is ignored on source</h2>
+                        </aside>
+                    </section>
+                    <section>
+                        <pre><code data-trim data-noescape>
+    sizes="(max-width: 30em) 100vw, 
+           calc(33vw - 100px),
+           (max-width: 50em) 50vw"
+                        </code></pre>
+                        <aside class="notes">
+                        <h2>Messed up source order in sizes</h2>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>source-size order</h2>
+                        <pre><code data-trim data-noescape>
+    sizes="(max-width: 30em) 100vw,
+           (max-width: 50em) 50vw,
+           <span class=highlight>calc(33vw - 100px)</span>"
+                        </code></pre>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <pre><code data-trim data-noescape>
+    &lt;img src="small.jpg" alt="The president."
+         srcset="400x200.jpg 600w, 800x400.jpg 1200w"&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        <h2>Messed upimage sizes</h2>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Image dimensions should be accurate</h2>
+                        <pre><code data-trim data-noescape>
+    &lt;img src="small.jpg" alt="The president."
+         srcset="<span class=highlight>400x200.jpg 400w, 800x400.jpg 800w</span>"&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        <h2>Messed upimage sizes</h2>
+                        </aside>
+                    </section>
+                    <section>
+                        <pre><code data-trim data-noescape>
+     &lt;img alt="The president." srcset="small.jpg 600w, large.jpg 1200w"&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        <h2>No src fallback</h2>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>src fallback</h2>
+                        <pre><code data-trim data-noescape>
+    &lt;img alt="The president." <span class=highlight>src="fallback.jpg"</span> 
+         srcset="small.jpg 600w, large.jpg 1200w"&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <pre><code data-trim data-noescape>
+    &lt;img src="small.jpg" alt="The president."
+         srcset="small.jpg 1x, medium.jpg 1.5x, large.jpg 2x"&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        <h2>Duplicate 1x url</h2>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Duplicate 1x url</h2>
+                        <pre><code data-trim data-noescape>
+    &lt;img src="small.jpg" alt="The president."
+         srcset="medium.jpg 1.5x, large.jpg 2x"&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>&lt;/quiz&gt;</h2>
+                    </section>
+                </section>
+                <section>
+                    <h2>The path not (yet) taken</h2>
                 </section>
                 <section>
                     <h2>Client Hints</h2>
-                    <ul>
-                        <li class="fragment">Proposed by Ilya Grigorik</li>
-                        <li class="fragment">HTTP based content-negotiation solution</li>
-                        <li class="fragment">Client sends hints/capabilities</li>
-                        <li class="fragment">Server side logic decides on resource</li>
-                    </ul>
                     <aside class="notes">
-                        (fragments)
+                    </aside>
+                </section>
+                <section>
+                    <h2>Content negotiation based</h2>
+                    <aside class="notes">
+                        <li>Client sends hints/capabilities</li>
+                        <li>Server side logic decides on resource</li>
                         <p>It's a complementary solution that allows for server side image adaptation, on top or instead of client side
                         one</p>
                         <p>Future doesn't look bright, since Mozilla are opposed to it</p>
