@@ -227,14 +227,12 @@
                 </section>
                 <section>
                     <h2>&lt;picture&gt; proposal</h2>
-                    <img src="resources/offering.jpg">
                     <aside class="notes">
                         <p>The RICG discussed the issue for a few months and came up with the picture element proposal</p>
                     </aside>
                 </section>
                 <section>
                     <h2>srcset proposal</h2>
-                    <img src="resources/disaster.jpg">
                     <aside class="notes">
                         <p>At the same time, Ted O'Connor from Apple proposed the srcset attribute for simple DPR selection</p>
                         <p>Hixie added it to the spec over the weekend without much public discussion, then tried to retrofit the other use
@@ -339,8 +337,14 @@
                     <img src="resources/IGG_logo.png">
                 </section>
                 <section>
-                    <h2>I even did this video thing...</h2>
-                    <iframe width="560" height="315" src="http://www.youtube.com/embed/yaYYEKN_kyk" frameborder="0" allowfullscreen></iframe>
+                    <h2>A group effort</h2>
+                    <img width=600px src="resources/trifives.gif">
+                    <aside class="notes">
+                        <p> XXXXXXX - Talk about Wilto and Geri and stuff regarding the IndieGoGo thing</p>
+                        <p>The RICG &amp; whatwg/blink folks are working together on the spec, to make it as awesome as possible. Mozilla is
+                        also heavily involved</p>
+                        <p>The implementation in Blink and Gecko is almost done.</p>
+                    </aside>
                 </section>
                 <section>
                     <h2>It went well</h2>
@@ -352,15 +356,6 @@
                 <section>
                     <h2>And patches got landing</h2>
                     <img src="resources/landing.gif">
-                </section>
-                <section>
-                    <h2>A group effort</h2>
-                    <img width=600px src="resources/trifives.gif">
-                    <aside class="notes">
-                        <p>The RICG &amp; whatwg/blink folks are working together on the spec, to make it as awesome as possible. Mozilla is
-                        also heavily involved</p>
-                        <p>The implementation in Blink and Gecko is almost done.</p>
-                    </aside>
                 </section>
                 <section>
                     <h2>~60 patches later</h2>
@@ -408,7 +403,7 @@
                 <section>
                     <h2>The syntax</h2>
                     <pre><code data-trim data-noescape>
-&lt;img src=<span class=highlight>"small-1x.jpg" srcset="small-2x.jpg 2x"</span> 
+&lt;img src=<span class=highlight>"1x.jpg" srcset="2x.jpg 2x, 3x.jpg 3x"</span> 
      alt="The president."&gt;
                     </code></pre>
                     <aside class="notes">
@@ -478,7 +473,15 @@
              pic400.jpg 400w, pic800.jpg 800w, pic1600.jpg 1600w, 
              pic3200.jpg 3200w"&gt;
                     </code></pre>
+                    <aside class="notes">
+                    <h2>Didn't add an example,so go over this example in length!</h2>
+                    </aside>
                 </section>
+                <!-- XXXX
+                <section>
+                    <h2>Add an example!</h2>
+                </section>
+                -->
                 <section>
                     <h2>&lt;/syntax&gt;</h2>
                 </section>
@@ -500,7 +503,6 @@
                         <p>I started out by implementing srcset's x descriptor. It shipped in Chrome/Opera stable a few months back.</p>
                         <p>sizes and the 'w' descriptor in srcset are done. I'll probably aim to ship it in M37</p>
                         <p>picture work has started and is moving along nicely - Christian is helping with stable state</p>
-                        xxxx Indiegogo campaign
                     </aside>
                 </section>
                 <section>
@@ -708,7 +710,7 @@
                     </aside>
                 </section>
                 <section>
-                    <h2>Source order matters #1</h2>
+                    <h2>Source order matters</h2>
                     <pre><code data-trim data-noescape>
 <span class=highlight>&lt;picture&gt;</span>
      <span class=highlight>&lt;source media="(min-width: 45em)"</span> srcset="large.jpg"&gt;
@@ -726,7 +728,7 @@
                     </code></pre>
                 </section>
                 <section>
-                    <h2>Source order matters #2</h2>
+                    <h2>Source-size order matters</h2>
                     <pre><code data-trim data-noescape>
 sizes=<span class=highlight>"(max-width: 30em) 100vw, 
      (max-width: 50em) 50vw, 
@@ -838,7 +840,7 @@ sizes=<span class=highlight>"(max-width: 50em) 50vw,
                     </aside>
                 </section>
                 <section>
-                    <h2>&lt;/&advice&gt;</h2>
+                    <h2>&lt;/advice&gt;</h2>
                 </section>
                 <section>
                     <h2>&lt;wwic&gt;</h2>
@@ -887,35 +889,35 @@ sizes=<span class=highlight>"(max-width: 50em) 50vw,
                     </section>
                     <section>
                         <pre><code data-trim data-noescape>
-    &lt;picture&gt;
-        &lt;source sizes="100vw"
-             srcset="pic100.jpg 100w, pic200.jpg 200w"&gt;
-        &lt;img src="otherpic.jpg" sizes="100vw"
-             alt="The president giving an award."
-             srcset="pic100.jpg 100w, pic200.jpg 200w"&gt;
-    &lt;/picture&gt;
-                        </code></pre>
-                        <aside class="notes">
-                        <h2>Unnecessary picture</h2>
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>Unnecessary picture</h2>
-                        <pre><code data-trim data-noescape>
+&lt;picture&gt;
+    &lt;source sizes="100vw"
+         srcset="pic100.jpg 100w, pic200.jpg 200w"&gt;
     &lt;img src="otherpic.jpg" sizes="100vw"
          alt="The president giving an award."
          srcset="pic100.jpg 100w, pic200.jpg 200w"&gt;
+&lt;/picture&gt;
+                        </code></pre>
+                        <aside class="notes">
+                        <h2>Unnecessary picture</h2>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Unnecessary picture</h2>
+                        <pre><code data-trim data-noescape>
+&lt;img src="otherpic.jpg" sizes="100vw"
+     alt="The president giving an award."
+     srcset="pic100.jpg 100w, pic200.jpg 200w"&gt;
                         </code></pre>
                         <aside class="notes">
                         </aside>
                     </section>
                     <section>
                         <pre><code data-trim data-noescape>
-    &lt;picture&gt;
-         &lt;source media="(min-width: 18em)" srcset="medium.jpg"&gt;
-         &lt;source media="(min-width: 45em)" srcset="large.jpg"&gt;
-         &lt;img src="small.jpg" alt="The president."&gt;
-    &lt;/picture&gt;
+&lt;picture&gt;
+     &lt;source media="(min-width: 18em)" srcset="medium.jpg"&gt;
+     &lt;source media="(min-width: 45em)" srcset="large.jpg"&gt;
+     &lt;img src="small.jpg" alt="The president."&gt;
+&lt;/picture&gt;
                         </code></pre>
                         <aside class="notes">
                         <h2>Messed up source order in picture</h2>
@@ -924,22 +926,22 @@ sizes=<span class=highlight>"(max-width: 50em) 50vw,
                     <section>
                         <h2>Source order</h2>
                         <pre><code data-trim data-noescape>
-    &lt;picture&gt;
-         &lt;source media="<span class=highlight>(min-width: 45em)</span>" srcset="large.jpg"&gt;
-         &lt;source media="<span class=highlight>(min-width: 18em)</span>" srcset="medium.jpg"&gt;
-         &lt;img src="small.jpg" alt="The president."&gt;
-    &lt;/picture&gt;
+&lt;picture&gt;
+     &lt;source media="<span class=highlight>(min-width: 45em)</span>" srcset="large.jpg"&gt;
+     &lt;source media="<span class=highlight>(min-width: 18em)</span>" srcset="medium.jpg"&gt;
+     &lt;img src="small.jpg" alt="The president."&gt;
+&lt;/picture&gt;
                         </code></pre>
                         <aside class="notes">
                         </aside>
                     </section>
                     <section>
                         <pre><code data-trim data-noescape>
-    &lt;picture&gt;
-         &lt;source media="(min-width: 45em)" src="large.jpg"&gt;
-         &lt;source media="(min-width: 18em)" src="medium.jpg"&gt;
-         &lt;img src="small.jpg" alt="The president."&gt;
-    &lt;/picture&gt;
+&lt;picture&gt;
+     &lt;source media="(min-width: 45em)" src="large.jpg"&gt;
+     &lt;source media="(min-width: 18em)" src="medium.jpg"&gt;
+     &lt;img src="small.jpg" alt="The president."&gt;
+&lt;/picture&gt;
                         </code></pre>
                         <aside class="notes">
                         <h2>src is ignored on source</h2>
@@ -948,11 +950,11 @@ sizes=<span class=highlight>"(max-width: 50em) 50vw,
                     <section>
                         <h2>src is ignored on source</h2>
                         <pre><code data-trim data-noescape>
-    &lt;picture&gt;
-         &lt;source media="(min-width: 45em)" <span class=highlight>srcset</span>="large.jpg"&gt;
-         &lt;source media="(min-width: 18em)" <span class=highlight>srcset</span>="medium.jpg"&gt;
-         &lt;img src="small.jpg" alt="The president."&gt;
-    &lt;/picture&gt;
+&lt;picture&gt;
+     &lt;source media="(min-width: 45em)" <span class=highlight>srcset</span>="large.jpg"&gt;
+     &lt;source media="(min-width: 18em)" <span class=highlight>srcset</span>="medium.jpg"&gt;
+     &lt;img src="small.jpg" alt="The president."&gt;
+&lt;/picture&gt;
                         </code></pre>
                         <aside class="notes">
                         <h2>src is ignored on source</h2>
@@ -960,9 +962,9 @@ sizes=<span class=highlight>"(max-width: 50em) 50vw,
                     </section>
                     <section>
                         <pre><code data-trim data-noescape>
-    sizes="(max-width: 30em) 100vw, 
-           calc(33vw - 100px),
-           (max-width: 50em) 50vw"
+sizes="(max-width: 30em) 100vw, 
+       calc(33vw - 100px),
+       (max-width: 50em) 50vw"
                         </code></pre>
                         <aside class="notes">
                         <h2>Messed up source order in sizes</h2>
@@ -971,8 +973,8 @@ sizes=<span class=highlight>"(max-width: 50em) 50vw,
                     <section>
                         <h2>source-size order</h2>
                         <pre><code data-trim data-noescape>
-    sizes="(max-width: 30em) 100vw,
-           (max-width: 50em) 50vw,
+sizes="(max-width: 30em) 100vw,
+       (max-width: 50em) 50vw,
            <span class=highlight>calc(33vw - 100px)</span>"
                         </code></pre>
                         <aside class="notes">
@@ -980,8 +982,8 @@ sizes=<span class=highlight>"(max-width: 50em) 50vw,
                     </section>
                     <section>
                         <pre><code data-trim data-noescape>
-    &lt;img src="small.jpg" alt="The president."
-         srcset="400x200.jpg 600w, 800x400.jpg 1200w"&gt;
+&lt;img src="small.jpg" alt="The president."
+     srcset="400x200.jpg 600w, 800x400.jpg 1200w"&gt;
                         </code></pre>
                         <aside class="notes">
                         <h2>Messed upimage sizes</h2>
@@ -990,8 +992,8 @@ sizes=<span class=highlight>"(max-width: 50em) 50vw,
                     <section>
                         <h2>Image dimensions should be accurate</h2>
                         <pre><code data-trim data-noescape>
-    &lt;img src="small.jpg" alt="The president."
-         srcset="<span class=highlight>400x200.jpg 400w, 800x400.jpg 800w</span>"&gt;
+&lt;img src="small.jpg" alt="The president."
+     srcset="<span class=highlight>400x200.jpg 400w, 800x400.jpg 800w</span>"&gt;
                         </code></pre>
                         <aside class="notes">
                         <h2>Messed upimage sizes</h2>
@@ -999,7 +1001,7 @@ sizes=<span class=highlight>"(max-width: 50em) 50vw,
                     </section>
                     <section>
                         <pre><code data-trim data-noescape>
-     &lt;img alt="The president." srcset="small.jpg 600w, large.jpg 1200w"&gt;
+&lt;img alt="The president." srcset="small.jpg 600w, large.jpg 1200w"&gt;
                         </code></pre>
                         <aside class="notes">
                         <h2>No src fallback</h2>
@@ -1008,16 +1010,16 @@ sizes=<span class=highlight>"(max-width: 50em) 50vw,
                     <section>
                         <h2>src fallback</h2>
                         <pre><code data-trim data-noescape>
-    &lt;img alt="The president." <span class=highlight>src="fallback.jpg"</span> 
-         srcset="small.jpg 600w, large.jpg 1200w"&gt;
+&lt;img alt="The president." <span class=highlight>src="fallback.jpg"</span> 
+     srcset="small.jpg 600w, large.jpg 1200w"&gt;
                         </code></pre>
                         <aside class="notes">
                         </aside>
                     </section>
                     <section>
                         <pre><code data-trim data-noescape>
-    &lt;img src="small.jpg" alt="The president."
-         srcset="small.jpg 1x, medium.jpg 1.5x, large.jpg 2x"&gt;
+&lt;img src="small.jpg" alt="The president."
+     srcset="small.jpg 1x, medium.jpg 1.5x, large.jpg 2x"&gt;
                         </code></pre>
                         <aside class="notes">
                         <h2>Duplicate 1x url</h2>
@@ -1026,8 +1028,8 @@ sizes=<span class=highlight>"(max-width: 50em) 50vw,
                     <section>
                         <h2>Duplicate 1x url</h2>
                         <pre><code data-trim data-noescape>
-    &lt;img src="small.jpg" alt="The president."
-         srcset="medium.jpg 1.5x, large.jpg 2x"&gt;
+&lt;img src="small.jpg" alt="The president."
+     srcset="medium.jpg 1.5x, large.jpg 2x"&gt;
                         </code></pre>
                         <aside class="notes">
                         </aside>
@@ -1202,7 +1204,7 @@ sizes=<span class=highlight>"(max-width: 50em) 50vw,
                     <h1>Thanks!</h1>
                     <p> <a href="https://twitter.com/yoavweiss">@yoavweiss</a> on Twitter &amp; GitHub</p>
                     <p><a href="http://responsiveimages.org">responsiveimages.org</a></p>
-                    <p>Slides: <a href="http://yoavweiss.github.io/respimg-blinkon-presentation/">yoavweiss.github.io/respimg-blinkon-presentation</a></p>
+                    <p>Slides: <a href="http://yoavweiss.github.io/respimg-opera-workshop/">yoavweiss.github.io/respimg-opera-workshop</a></p>
                 </section>
                 <section>
                     <h2>Questions?</h2>
