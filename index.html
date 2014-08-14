@@ -44,8 +44,8 @@
                 <section style="width: 120%;margin-left: -10%">
                     <h1>Responsive Images</h1>
                     <p> <a href="https://twitter.com/yoavweiss">Yoav Weiss</a></p>
-                    <p>Nerdery - June 2014</p>
-                    <p><a href="http://yoavweiss.github.io/respimg-nerdery-workshop/">yoavweiss.github.io/respimg-nerdery-workshop</a></p>
+                    <p>August 2014</p>
+                    <p><a href="http://yoavweiss.github.io/respimg-indi-workshop/">yoavweiss.github.io/respimg-indi-workshop</a></p>
                     <aside class="notes">
                     </aside>
                 </section>
@@ -848,142 +848,6 @@ sizes="(max-width: 30em) 100vw,
                     </section>
                 </section>
                 <section>
-                    <h2>Let's talk about *your* workflow</h2>
-                    <img src="resources/how_you_doin.gif">
-                    <aside class="notes">
-                    </aside>
-                </section>
-                <section>
-                    <h2>&lt;internals&gt;</h2>
-                </section>
-                <section>
-                    <section>
-                        <h2>Media Queries evaluation in the preloader</h2>
-                        <p class=fragment>PreloadScanner requires off-main-thread MQ eval</p>
-                        <aside class="notes">
-                            <p>Getting picture and sizes to wrok requires MQ eval in the preloadScanner</p>
-                            <p>Since the Bison parser and related classes are not thread safe, I had to create an alternative mechanism</p>
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>Who's afraid of the big, bad preloader</h2>
-                        <aside class="notes">
-                            [Raise your hand if you know what the preloader is]
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>AKA</h2>
-                        <ul>
-                            <li class="fragment">PreloadScanner</li>
-                            <li class="fragment">Speculative parser</li>
-                            <li class="fragment">Look-ahead scanner</li>
-                        </ul>
-                        <aside class="notes">
-                            It goes by many names, but has been the BoogeyMan for Web devs during the respimg hack period
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>"The greatest browser optimization of all times"</h2>
-                        <p style="text-align: right">- Steve Souders</p>
-                        <aside class="notes">
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>What does it do?</h2>
-                        <ul>
-                            <li class="fragment">Scans the document when the parser is blocked </li>
-                            <li class="fragment">Figures out resources that need to be downloaded</li>
-                            <li class="fragment">Adds them to the download queue</li>
-                        </ul>
-                        <aside class="notes">
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>How important is that???</h2>
-                        <img src="resources/troll_tiny.png">
-                        <aside class="notes">
-
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>SmashingMag - With preloader</h2>
-                        <img src="resources/preloader.png">
-                        DCL - 2390; PLT - 3585
-                        <br><br>
-                        <small>Using <a href="http://ericduran.github.io/chromeHAR/">chromeHAR</a></small>
-                        <aside class="notes">
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>SmashingMag - No preloader</h2>
-                        <img src="resources/nopreloader.png">
-                        DCL - 5395; PLT - 7193
-                        <aside class="notes">
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>BBC - With preloader</h2>
-                        <img src="resources/bbc_preloader.png">
-                        DCL - 5022; PLT - 5980
-                        <br><br>
-                        <small>Using <a href="http://ericduran.github.io/chromeHAR/">chromeHAR</a></small>
-                        <aside class="notes">
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>BBC - Without preloader</h2>
-                        <img src="resources/bbc_nopreloader.png">
-                        DCL - 7660; PLT - 7957
-                        <aside class="notes">
-                        </aside>
-                    </section>
-                </section>
-                <section>
-                    <h2>Intrinsic sizing</h2>
-                    <p><img src="resources/intrinsicSizingX.png"></p>
-                    <aside class="notes">
-                        <p>Both the 'x' descriptor and the 'w' have an impact on the image's intrinsic size.</p>
-                        <p>That means that when the image dimensions are not otherwise defined, the browser will use these values and
-                        the image dimensions from the image data itself to determine the display size of the image.</p>
-                        So, if you set these values incrrectly, they may imapct the way your image is displayed.
-                    </aside>
-                </section>
-                <section>
-                    <h2>Async image loading</h2>
-                    <p class=fragment>Required to avoid double download</p>
-                    <p class=fragment>Also required for img attribute setting</p>
-                    <p class=fragment>Worked on by Christian Biesinger (Thanks, Christian! :))</p>
-                    <aside class="notes">
-                        <p>In the HTML spec it is stated that images should start their download only after reaching stable state.</p>
-                        <p>That means that HTMLImageElement is able to know who its parent node is (when set by parser) and avoid a double
-                        download</p>
-                        <p>When set by JS, it means that JS running was terminated so that the order in which attributes are set on img
-                        doesn't matter</p>
-                        <p>That wasn't how things worked in Blink though</p>
-                        <p>I poked around a little bit with it (added tests and such), and then Christian Biesinger took it upon himself to
-                        make sure the spec makes it easier to be compliant and then align Blink's behaviour to the spec.</p>
-                    </aside>
-                </section>
-                <section>
-                    <h2>Future improvements?</h2>
-                    <img src="resources/hoverboard.jpg">
-                    <p class=credits><a
-                        href="http://earnthis.net/brian-terrills-100-film-favorites-22-back-to-the-future-part-ii/">http://earnthis.net/brian-terrills-100-film-favorites-22-back-to-the-future-part-ii/</a></p>
-                </section>
-                <section>
-                    <h2>Smarter resource selection</h2>
-                    <aside class="notes">
-                        <p>Avoid loading lower quality when high quality is available</p>
-                        <p>Display cached/dataURI images while waiting for the real one</p>
-                    </aside>
-                </section>
-                <section>
-                    <h2>User preference, bandwidth considerations ...</h2>
-                </section>
-                <section>
-                    <h2>&lt;/internals&gt;</h2>
-                </section>
-                <section>
                     <h2>The path not (yet) taken</h2>
                 </section>
                 <section>
@@ -1114,7 +978,7 @@ sizes="(max-width: 30em) 100vw,
                     <h1>Thanks!</h1>
                     <p> <a href="https://twitter.com/yoavweiss">@yoavweiss</a> on Twitter &amp; GitHub</p>
                     <p><a href="http://responsiveimages.org">responsiveimages.org</a></p>
-                    <p>Slides: <a href="http://yoavweiss.github.io/respimg-nerdery-workshop/">yoavweiss.github.io/respimg-nerdery-workshop</a></p>
+                    <p>Slides: <a href="http://yoavweiss.github.io/respimg-indi-workshop/">yoavweiss.github.io/respimg-indi-workshop</a></p>
                 </section>
                 <section>
                     <h2>Questions?</h2>
